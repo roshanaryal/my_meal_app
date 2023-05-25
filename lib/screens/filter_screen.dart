@@ -47,7 +47,7 @@ class FilterScreen extends ConsumerWidget {
       //   }
       // }),
       appBar: AppBar(
-        title: Text("Your filter"),
+        title: const Text("Your filter"),
       ),
       body: Column(
         children: [

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mealsapp/model/meal.dart';
 import 'package:mealsapp/screens/meals_detail.dart';
 import 'package:mealsapp/widgets/meals_list_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  MealsScreen(
+  const MealsScreen(
       {super.key,
       required this.title,
       required this.meal,
@@ -13,9 +12,9 @@ class MealsScreen extends StatelessWidget {
       this.isFromFavourite = false});
 
   final List<Meal> meal;
-  String title;
+ final String title;
   // final void Function(Meal meal) onToggleFavourite;
-  bool isFromFavourite;
+  final bool isFromFavourite;
 
   void _onMealTapped(BuildContext context, Meal meal) {
     Navigator.push(

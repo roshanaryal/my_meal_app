@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mealsapp/data/dummy_data.dart';
 import 'package:mealsapp/provider/favourite_provide.dart';
 import 'package:mealsapp/provider/filters_provider.dart';
-import 'package:mealsapp/provider/meals_provider.dart';
 import 'package:mealsapp/screens/categories.dart';
 import 'package:mealsapp/screens/filter_screen.dart';
 import 'package:mealsapp/screens/meals.dart';
 import 'package:mealsapp/widgets/main_drawer.dart';
 
-import '../model/meal.dart';
 
 final kInitialFilters = {
   Filters.guttenFree: false,
@@ -52,7 +49,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => FilterScreen(),
+          builder: (context) => const FilterScreen(),
         ),
       );
 
