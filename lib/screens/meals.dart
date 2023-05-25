@@ -13,7 +13,7 @@ class MealsScreen extends StatelessWidget {
       this.isFromFavourite = false});
 
   final List<Meal> meal;
-  final String title;
+  String title;
   // final void Function(Meal meal) onToggleFavourite;
   bool isFromFavourite;
 
@@ -33,9 +33,6 @@ class MealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-
-
     Widget? mainContent = ListView.builder(
       itemCount: meal.length,
       itemBuilder: (
@@ -81,11 +78,15 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: mainContent,
-    );
+    if (isFromFavourite) {
+      return mainContent;
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: mainContent,
+      );
+    }
   }
 }

@@ -15,9 +15,9 @@ class MealsDetailScreen extends ConsumerStatefulWidget {
 class _MealsDetailScreenState extends ConsumerState<MealsDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    bool isMealInFavouriteList = ref
-        .watch(favouriteMealProvider.notifier)
-        .isInFavouriteList(widget.meal);
+    final favMeal = ref.watch(favouriteMealProvider);
+
+    bool isInFavourite = favMeal.contains(widget.meal);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +39,7 @@ class _MealsDetailScreenState extends ConsumerState<MealsDetailScreen> {
               );
             },
             icon: Icon(
-              isMealInFavouriteList ? Icons.star : Icons.star_outline,
+              isInFavourite ? Icons.star : Icons.star_outline,
               color: Colors.yellow,
             ),
           )
