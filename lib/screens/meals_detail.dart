@@ -38,9 +38,19 @@ class _MealsDetailScreenState extends ConsumerState<MealsDetailScreen> {
                 ),
               );
             },
-            icon: Icon(
-              isInFavourite ? Icons.star : Icons.star_outline,
-              color: Colors.yellow,
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: ((chil, animation) {
+                return RotationTransition(
+                  turns: Tween<double>(begin: 0.9, end: 1.0).animate(animation),
+                  child: chil,
+                );
+              }),
+              child: Icon(
+                isInFavourite ? Icons.star : Icons.star_outline,
+                color: Colors.yellow,
+                key: ValueKey(isInFavourite),
+              ),
             ),
           )
         ],
@@ -51,15 +61,18 @@ class _MealsDetailScreenState extends ConsumerState<MealsDetailScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              FadeInImage(
-                fit: BoxFit.cover,
-                height: 200,
-                width: double.infinity,
-                placeholder: MemoryImage(
-                  kTransparentImage,
-                ),
-                image: NetworkImage(
-                  widget.meal.imageUrl,
+              Hero(
+                tag: widget.meal.id,
+                child: FadeInImage(
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: double.infinity,
+                  placeholder: MemoryImage(
+                    kTransparentImage,
+                  ),
+                  image: NetworkImage(
+                    widget.meal.imageUrl,
+                  ),
                 ),
               ),
               const SizedBox(
