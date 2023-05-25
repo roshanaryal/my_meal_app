@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mealsapp/model/meal.dart';
 import 'package:mealsapp/screens/meals_detail.dart';
 import 'package:mealsapp/widgets/meals_list_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meal,required this.onToggleFavourite});
+  MealsScreen(
+      {super.key,
+      required this.title,
+      required this.meal,
+      // required this.onToggleFavourite,
+      this.isFromFavourite = false});
 
   final List<Meal> meal;
   final String title;
-  final void Function(Meal meal) onToggleFavourite;
+  // final void Function(Meal meal) onToggleFavourite;
+  bool isFromFavourite;
 
   void _onMealTapped(BuildContext context, Meal meal) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) {
-          return MealsDetailScreen(meal: meal,onToggleFavourite: onToggleFavourite,);
+          return MealsDetailScreen(
+            meal: meal,
+            // onToggleFavourite: onToggleFavourite,
+          );
         },
       ),
     );
@@ -23,6 +33,9 @@ class MealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+
+
     Widget? mainContent = ListView.builder(
       itemCount: meal.length,
       itemBuilder: (
@@ -43,7 +56,9 @@ class MealsScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Opps...No meals available",
+              isFromFavourite
+                  ? 'No favourite meals available'
+                  : "Opps...No meals available",
               style: Theme.of(context)
                   .textTheme
                   .headlineLarge!
@@ -53,7 +68,9 @@ class MealsScreen extends StatelessWidget {
               height: 16,
             ),
             Text(
-              "Try selecting another category",
+              isFromFavourite
+                  ? 'Try adding meals to favourite'
+                  : "Try selecting another category",
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge!
